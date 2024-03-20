@@ -20,8 +20,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long id;
     public String name;
+    public double price;
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name="seller_fk")
     @JsonIgnoreProperties("products")
-    public Product product;
+    public Seller seller;
 }

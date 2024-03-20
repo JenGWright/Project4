@@ -18,6 +18,6 @@ public class Seller {
     public long id;
     public String name;
     @OneToMany
-    @JoinColumn(name="product_fk")
+    @JoinColumn(name="seller_fk")
     public List<Product> products;
 }
