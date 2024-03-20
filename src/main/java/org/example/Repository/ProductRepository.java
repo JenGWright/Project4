@@ -8,6 +8,12 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
+
+
+    /*Painting savedPainting = paintingRepository.save(p);
+        a.getPaintings().add(savedPainting);
+        artistRepository.save(a);
+        return savedPainting;*/
     //named query
     List<Product> findByName(String name);
     ///JPQL query

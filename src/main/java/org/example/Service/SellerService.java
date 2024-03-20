@@ -2,6 +2,7 @@ package org.example.Service;
 
 
 import org.example.Entity.Seller;
+import org.example.Entity.Product;
 import org.example.Repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,11 @@ public class SellerService {
     public SellerService(SellerRepository sellerRepository){
         this.sellerRepository = sellerRepository;
     }
-    public List<Seller> getAllSellers(){
+    public List<Seller> getAllSellers() {
         return sellerRepository.findAll();
     }
+    public Seller saveSeller (Seller s) {
 
-    public Seller saveSeller (Seller s){
         return sellerRepository.save(s);
     }
 }

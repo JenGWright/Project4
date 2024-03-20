@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Calendar;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,5 +24,4 @@ public class Product {
     @ManyToOne
     @JsonIgnoreProperties("products")
     public Product product;
-
 }

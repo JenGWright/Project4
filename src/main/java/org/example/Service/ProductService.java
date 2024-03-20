@@ -7,10 +7,9 @@ import org.example.Repository.ProductRepository;
 import org.example.Repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
-/*
+
 @Service
 
 public class ProductService {
@@ -36,13 +35,13 @@ public class ProductService {
             s = optional.get();
         }
         Product savedProduct = productRepository.save(p);
-        p.getProducts().add(savedProduct);
+        s.getProducts().add(savedProduct);
         sellerRepository.save(s);
         return savedProduct;
     }
 
     public List<Product> getAllProductsByName(String name) {
-        return productRepository.findbyName2(name);
+        return productRepository.findByName2(name);
     }
 
     public Product getById(long id) throws ProductNotFoundException {
@@ -54,4 +53,3 @@ public class ProductService {
         }
     }
 }
-*/
