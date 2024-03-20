@@ -19,7 +19,7 @@ public class SellerService {
         return sellerRepository.findAll();
     }
 
-    public Seller saveSeller (Seller s){
+    public Seller saveSeller (Seller s) {
         return sellerRepository.save(s);
     }
 }

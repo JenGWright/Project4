@@ -7,10 +7,9 @@ import org.example.Repository.ProductRepository;
 import org.example.Repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
-/*
+
 @Service
 
 public class ProductService {
@@ -36,13 +35,13 @@ public class ProductService {
             s = optional.get();
         }
         Product savedProduct = productRepository.save(p);
-        p.getProducts().add(savedProduct);
+        s.getProducts().add(savedProduct);
         sellerRepository.save(s);
         return savedProduct;
     }
 
     public List<Product> getAllProductsByName(String name) {
-        return productRepository.findbyName2(name);
+        return productRepository.findByName2(name);
     }
 
     public Product getById(long id) throws ProductNotFoundException {
@@ -52,6 +51,34 @@ public class ProductService {
         }else{
             return p.get();
         }
+
     }
+
+    public Product updateProduct(long id, Product updatedProduct) throws ProductNotFoundException{
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isEmpty()) {
+            throw new ProductNotFoundException("Product Not Found");
+        }
+        Product existingProduct = optionalProduct.get();
+
+        existingProduct.setName(updatedProduct.getName());
+        existingProduct.setPrice(updatedProduct.getPrice());
+
+        return productRepository.save(existingProduct);
+    }
+
+    public Product deleteProduct(long id) throws ProductNotFoundException {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        Product productToDelete;
+        if (optionalProduct.isEmpty()) {
+            throw new ProductNotFoundException("Product Not Found");
+        }else{
+            productToDelete = optionalProduct.get();
+        }
+
+        productRepository.delete(productToDelete);
+        return productToDelete;
+    }
+
+
 }
-*/
