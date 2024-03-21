@@ -3,6 +3,7 @@ package org.example.Service;
 import org.example.Entity.Product;
 import org.example.Entity.Seller;
 import org.example.Exception.ProductNotFoundException;
+import org.example.Main;
 import org.example.Repository.ProductRepository;
 import org.example.Repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class ProductService {
     }
 
     public Product saveProduct(long id, Product p) throws ProductNotFoundException {
+        Main.log.info ("Add - Attempting to add a Product");
         Optional<Seller> optional = sellerRepository.findById(id);
         Seller s;
         if (optional.isEmpty()) {
@@ -56,6 +58,7 @@ public class ProductService {
     }
 
     public Product updateProduct(long id, Product updatedProduct) throws ProductNotFoundException {
+        Main.log.info ("Add - Attempting to update a Product");
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (optionalProduct.isEmpty()) {
             throw new ProductNotFoundException("Product Not Found");
@@ -69,6 +72,7 @@ public class ProductService {
     }
 
     public Product deleteProduct(long id) throws ProductNotFoundException {
+        Main.log.info ("Add - Attempting to delete a Product");
         Optional<Product> optionalProduct = productRepository.findById(id);
         Product productToDelete;
         if (optionalProduct.isEmpty()) {
