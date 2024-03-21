@@ -1,7 +1,8 @@
 package org.example.Entity;
-
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import org.example.Controller.Validator.NotInteger;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class Seller {
     @Column(nullable = false)
     public long id;
     @Column(nullable = false)
+    @NotBlank(message = "Seller must be a non-empty String")
+    @NotInteger
     public String seller;
     @OneToMany
     @JoinColumn(name="seller_fk")

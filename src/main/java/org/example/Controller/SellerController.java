@@ -1,10 +1,12 @@
 package org.example.Controller;
 
 
+import jakarta.validation.Valid;
 import org.example.Entity.Seller;
 import org.example.Service.SellerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +30,9 @@ public class SellerController {
     }
 
     @PostMapping("/seller")
-    public ResponseEntity<Seller> addSeller(@RequestBody Seller s){
+    public ResponseEntity<?> addSeller(@Valid @RequestBody Seller s, BindingResult result){
+        if (result.hasErrors()){
+            return ResponseEntity.badRequest().body("Invalid Input");}
         Seller seller = sellerService.saveSeller(s);
         return new ResponseEntity<>(seller, HttpStatus.CREATED);
     }
