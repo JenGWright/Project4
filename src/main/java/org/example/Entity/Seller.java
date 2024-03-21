@@ -16,7 +16,7 @@ public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long id;
-    public String name;
+    public String seller;
     @OneToMany
     @JoinColumn(name="product_fk")
     public List<Product> products;
