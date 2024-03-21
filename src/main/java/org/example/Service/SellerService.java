@@ -13,13 +13,16 @@ public class SellerService {
     SellerRepository sellerRepository;
     @Autowired
     public SellerService(SellerRepository sellerRepository){
+
         this.sellerRepository = sellerRepository;
     }
     public List<Seller> getAllSellers(){
+
         return sellerRepository.findAll();
     }
 
     public Seller saveSeller (Seller s) {
+
         return sellerRepository.save(s);
     }
 }

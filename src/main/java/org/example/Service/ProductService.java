@@ -35,7 +35,7 @@ public class ProductService {
             s = optional.get();
         }
         Product savedProduct = productRepository.save(p);
-        s.getProducts().add(savedProduct);
+        s.getProductList().add(savedProduct);
         sellerRepository.save(s);
         return savedProduct;
     }

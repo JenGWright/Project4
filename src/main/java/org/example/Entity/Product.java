@@ -14,8 +14,11 @@ import lombok.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     public long id;
+    @Column(nullable = false)
     public String name;
+    @Column(nullable = false)
     public double price;
     @JsonIgnore
     @ManyToOne
