@@ -66,10 +66,12 @@ public class ProductController {
     }
 
     @DeleteMapping("product/{id}")
-    public ResponseEntity<Product> deleteProduct(@PathVariable long id){
+    public ResponseEntity<String> deleteProduct(@PathVariable long id){
         try{
             Product product =productService.deleteProduct(id);
-            return new ResponseEntity<>(product, HttpStatus.OK);
+            String message = "Product is deleted Successfully!";
+            return ResponseEntity.ok(message);
+           // return new ResponseEntity<>(product, HttpStatus.OK);
         }catch (ProductNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.OK);
         }

@@ -15,9 +15,11 @@ import java.util.List;
 public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     public long id;
+    @Column(nullable = false)
     public String seller;
     @OneToMany
-    @JoinColumn(name="product_fk")
-    public List<Product> products;
+    @JoinColumn(name="seller_fk")
+    public List<Product> productList;
 }

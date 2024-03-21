@@ -21,7 +21,7 @@ public class SellerController {
     }
 
     @GetMapping("/seller")
-    public ResponseEntity<List<Seller>> getallSeller(){
+    public ResponseEntity<List<Seller>> getAllSeller(){
         List<Seller> sellers = sellerService.getAllSellers();
         return new ResponseEntity<>(sellers, HttpStatus.OK);
 
