@@ -55,4 +55,25 @@ public class ProductController {
         }
     }
 
+    @PutMapping("product/{id}")
+    public ResponseEntity<Product> updateProduct(@RequestBody Product p, @PathVariable long id){
+        try{
+            Product product =productService.updateProduct(id, p);
+            return new ResponseEntity<>(p, HttpStatus.OK);
+        }catch (ProductNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("product/{id}")
+    public ResponseEntity<Product> deleteProduct(@PathVariable long id){
+        try{
+            Product product =productService.deleteProduct(id);
+            return new ResponseEntity<>(product, HttpStatus.OK);
+        }catch (ProductNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+    }
+
 }

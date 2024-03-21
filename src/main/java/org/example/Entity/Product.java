@@ -1,12 +1,9 @@
 package org.example.Entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Calendar;
 
 @Entity
 @NoArgsConstructor
@@ -14,7 +11,6 @@ import java.util.Calendar;
 @Data
 @EqualsAndHashCode
 @ToString
-
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,4 +22,5 @@ public class Product {
     @JoinColumn(name="seller_fk")
     @JsonIgnoreProperties("products")
     public Seller seller;
+
 }
