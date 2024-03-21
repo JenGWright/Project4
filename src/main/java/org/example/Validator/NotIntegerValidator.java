@@ -1,9 +1,9 @@
-package org.example.Controller.Validator;
+package org.example.Validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class NotIntigerValidator implements ConstraintValidator<NotInteger, String> {
+public class NotIntegerValidator implements ConstraintValidator<NotInteger, String> {
     @Override
     public void initialize (NotInteger constraintAnnotation){
     }

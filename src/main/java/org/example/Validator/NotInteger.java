@@ -1,9 +1,7 @@
-package org.example.Controller.Validator;
+package org.example.Validator;
 
 
 import jakarta.validation.Constraint;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 import jakarta.validation.Payload;
 
 import java.lang.annotation.Documented;
@@ -14,7 +12,7 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.*;
 
 @Documented
-@Constraint(validatedBy = {NotIntigerValidator.class})
+@Constraint(validatedBy = {NotIntegerValidator.class})
 @Target({METHOD, FIELD,PARAMETER,TYPE_USE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotInteger {

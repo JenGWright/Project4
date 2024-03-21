@@ -5,6 +5,8 @@ package org.example.Controller;
 import org.example.Entity.Product;
 import org.example.Exception.ProductNotFoundException;
 import org.example.Service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import java.util.List;
 @RestController
 
 public class ProductController {
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     ProductService productService;
     public ProductController(ProductService productService){
 
@@ -22,6 +25,7 @@ public class ProductController {
 
     @GetMapping(value="/product", params = "name")
     public ResponseEntity<List<Product>> getAllProductsByName(@RequestParam String name){
+        logger.info("Fetch all Products");
         List<org.example.Entity.Product> products;
         if (name == null) {
             products = productService.getAllProducts();
@@ -51,6 +55,7 @@ public class ProductController {
             Product p = productService.getById(id);
             return new ResponseEntity<>(p, HttpStatus.OK);
         }catch (ProductNotFoundException e ){
+            logger.error("Invalid ID");
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }

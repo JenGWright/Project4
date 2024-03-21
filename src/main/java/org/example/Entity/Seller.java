@@ -2,7 +2,7 @@ package org.example.Entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.example.Controller.Validator.NotInteger;
+import org.example.Validator.NotInteger;
 
 import java.util.List;
 
