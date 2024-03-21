@@ -15,27 +15,28 @@ import java.util.Optional;
 public class ProductService {
     ProductRepository productRepository;
     SellerRepository sellerRepository;
+
     @Autowired
 
-    public ProductService(ProductRepository productRepository, SellerRepository sellerRepository){
+    public ProductService(ProductRepository productRepository, SellerRepository sellerRepository) {
         this.productRepository = productRepository;
         this.sellerRepository = sellerRepository;
     }
 
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
     public Product saveProduct(long id, Product p) throws ProductNotFoundException {
         Optional<Seller> optional = sellerRepository.findById(id);
         Seller s;
-        if(optional.isEmpty()){
+        if (optional.isEmpty()) {
             throw new ProductNotFoundException("Seller Not Found");
-        }else{
+        } else {
             s = optional.get();
         }
         Product savedProduct = productRepository.save(p);
-        s.getProducts().add(savedProduct);
+        s.getProductList().add(savedProduct);
         sellerRepository.save(s);
         return savedProduct;
     }
@@ -46,10 +47,38 @@ public class ProductService {
 
     public Product getById(long id) throws ProductNotFoundException {
         Optional<Product> p = productRepository.findById(id);
-        if(p.isEmpty()){
+        if (p.isEmpty()) {
             throw new ProductNotFoundException("Product Not Found");
-        }else{
+        } else {
             return p.get();
         }
+
     }
+
+    public Product updateProduct(long id, Product updatedProduct) throws ProductNotFoundException {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isEmpty()) {
+            throw new ProductNotFoundException("Product Not Found");
+        }
+        Product existingProduct = optionalProduct.get();
+
+        existingProduct.setName(updatedProduct.getName());
+        existingProduct.setPrice(updatedProduct.getPrice());
+
+        return productRepository.save(existingProduct);
+    }
+
+    public Product deleteProduct(long id) throws ProductNotFoundException {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        Product productToDelete;
+        if (optionalProduct.isEmpty()) {
+            throw new ProductNotFoundException("Product Not Found");
+        } else {
+            productToDelete = optionalProduct.get();
+        }
+
+        productRepository.delete(productToDelete);
+        return productToDelete;
+    }
+
 }

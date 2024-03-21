@@ -71,7 +71,6 @@ public class ProductController {
             Product product =productService.deleteProduct(id);
             String message = "Product is deleted Successfully!";
             return ResponseEntity.ok(message);
-           // return new ResponseEntity<>(product, HttpStatus.OK);
         }catch (ProductNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
